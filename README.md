@@ -44,6 +44,10 @@ if you faced a problem loading these packages try to install them using **requir
 ```bash
 $ pip install -r requirements.txt
 ```
+
+I've uploaded the DB and posts images in case you want to use it.
+
+**Note**: After making migrations and running the server make sure to define some **Categories** table in the DB using admin panel
 **Note**: This commands is for MacOS
 
 ## Login information
