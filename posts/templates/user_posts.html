@@ -1,24 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="row">
-    <div class="col-md-4">
-      <form method="post" class=" my-2 my-lg-0">
-        {% csrf_token %}
-        <div class="input-group">
-          <select name="category" class="custom-select trans" id="inputGroupSelect04" aria-label="Example select with button addon">
+  {% if auther %}
+    <div class="row">
+      <div class="col-md-4">
+        <form method="post" class=" my-2 my-lg-0">
+          {% csrf_token %}
+          <div class="input-group">
+            <select name="category" class="custom-select trans" id="inputGroupSelect04" aria-label="Example select with button addon">
 
-            {% for category in categories %}
-              <option value="{{ category.pk }}">{{ category }}</option>
-            {% endfor %}
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-light trans" type="submit">Filter</button>
+              {% for category in categories %}
+                <option value="{{ category.pk }}">{{ category }}</option>
+              {% endfor %}
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-light trans" type="submit">Filter</button>
+            </div>
           </div>
-        </div>
 
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
+  {% endif %}
 
     <div class="row mt-4">
     {% if all_posts.object_list %}

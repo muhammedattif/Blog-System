@@ -23,13 +23,16 @@ def posts_list(request):
 
 # this function used to get all posts of a particular user and logedin user
 def user_posts(request, user):
+    auther = False
+    # return published and unpublished posts for the post's auther
     if request.user.username == user:
+        auther = True
         if request.method == 'POST':
             all_posts = Post.objects.filter(user__username = user, category = request.POST['category'])
         else:
             all_posts = Post.objects.filter(user__username = user)
     else:
-        all_posts = Post.objects.filter(published = True, user__username = user, category = request.POST['category'])
+        all_posts = Post.objects.filter(published = True, user__username = user)
 
 
     paginator = Paginator(all_posts, 3)
@@ -38,7 +41,8 @@ def user_posts(request, user):
     categories = Category.objects.all()
     context = {
         'all_posts': all_posts,
-        'categories': categories
+        'categories': categories,
+        'auther': auther
     }
     return render(request, 'user_posts.html', context)
 
